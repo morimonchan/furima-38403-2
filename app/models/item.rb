@@ -14,6 +14,8 @@ class Item < ApplicationRecord
   validates :place_id       ,presence: true, numericality:  { other_than: 1 , message: "can't be blank"}
   validates :sent_day_id    ,presence: true, numericality:  { other_than: 1 , message: "can't be blank"}
   validates :price          ,presence: true
+  validates :image          ,presence: true
+
 
 
   belongs_to :user

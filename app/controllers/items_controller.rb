@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
    if @item.save
      redirect_to items_path(@item.user_id)
    else
-      render :new
+     render :new
    end
  end
 
@@ -23,5 +23,6 @@ class ItemsController < ApplicationController
  def item_params
   params.require(:item).permit(:name,:explain,:category_id,:condition_id,:cost_burden_id,:place_id,:sent_day_id,:price,:image).merge(user_id: current_user.id)
  end
+
 
 end
