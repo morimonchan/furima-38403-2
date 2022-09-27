@@ -4,13 +4,13 @@ class ItemsController < ApplicationController
   @items = Item.includes(:user)
  end
 
+
  def new
   @item = Item.new
  end
 
  def create
   @item = Item.new(item_params)
-  binding.pry
    if @item.save
      redirect_to items_path(@item.user_id)
    else
