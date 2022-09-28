@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :sent_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates_format_of :price, with: /\A[0-9]+\z/
   validates :price, presence: true
-  validates_inclusion_of :price, in: 300..9_999_999
+  validates_inclusion_of :price, in: 300..9_999_999, only_integer: true
 
   validates :image, presence: true
 

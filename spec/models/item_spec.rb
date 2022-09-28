@@ -8,10 +8,17 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品機能' do
+   context '商品出品できるとき' do
+    it '必須項目が存在すれば登録できる' do
+      expect(@item).to be_valid
+    end
+   end
+
+   context '商品出品できないとき' do
     it '商品画像が空では登録できない' do
-      #  @item.image = ''
-      #  @item.valid?
-      #  expect(@item.errors.full_messages).to include""
+       @item.image = nil
+       @item.valid?
+       expect(@item.errors.full_messages).to include"Image can't be blank"
     end
     it '商品名が空では登録できない' do
       @item.name = ''
@@ -88,5 +95,12 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include 'Price is not included in the list'
     end
+    it 'ユーザーが紐づいていないと登録できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include 'User must exist'
+    end
+
+   end
   end
 end
