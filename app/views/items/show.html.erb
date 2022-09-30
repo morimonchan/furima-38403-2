@@ -16,14 +16,13 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-       <%= @item.price%> 
+       <%= "¥#{@item.price}"%> 
       </span>
       <span class="item-postage">
         <%= @item.cost_burden.name %>
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <%# 商品購入履歴とアソシエーションする予定 %>
   <% if user_signed_in? %>
    <% if current_user.id == @item.user_id %>
@@ -37,8 +36,7 @@
   
     <%# //商品が売れていない場合はこちらを表示しましょう %>
    <% end %>
-
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
+    <%# 商品購入履歴とアソシエーションする予定 %>
   <% end %>
 
     <div class="item-explain-box">
