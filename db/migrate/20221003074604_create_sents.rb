@@ -7,11 +7,10 @@ class CreateSents < ActiveRecord::Migration[6.0]
       t.string :street_address       , null: false             
       t.string :building                                   
       t.string :phone_number       , null: false             
-      # t.references  :purchase_history ,null: false ,foreign_key: true          
+      t.references  :purchase_history ,null: false ,foreign_key: true          
       
       t.timestamps
 
-      # belongs_to :purchase_history
 
     end
   end

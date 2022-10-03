@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "items#index"
   resources :items 
-  resources :sents , only: :index
-
+  resources :purchase_histories, only: :create do
+    resources :sents, only: :index
+  end
 end   
