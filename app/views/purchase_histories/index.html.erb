@@ -74,7 +74,7 @@
     
     <%# 配送先の入力 %>
    <%= form_with model: @purchase_history_sent, url: item_purchase_histories_path, local: true do |f| %>
-   <%# <%= render 'shared/error_messages', model: @purchase_history_sent %> 
+   <%= render 'shared/error_messages', model: @purchase_history_sent %>
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
         配送先入力
