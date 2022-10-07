@@ -2,7 +2,7 @@ class PurchaseHistorySent
 
 
   include ActiveModel::Model
-  attr_accessor :code, :place_id, :city, :street_address, :building, :phone_number, :user_id, :item_id
+  attr_accessor :code, :place_id, :city, :street_address, :building, :phone_number, :user_id, :item_id, :token
 
 
   with_options presence: true do
@@ -12,6 +12,7 @@ class PurchaseHistorySent
   validates :user_id
   validates :item_id
   validates :phone_number       ,    format: {with: /\A\d{10,11}\z/, message: "is invalid. Include hyphen(-)"}  
+  validates :token
 
   end
   validates  :place_id  , numericality: { other_than: 1, message: "can't be blank" }             

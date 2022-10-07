@@ -32,6 +32,8 @@
     <%# /支払額の表示 %>
 
     <%= form_with id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'shared/error_messages', model: @purchase_history_sent %>
+
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
@@ -74,7 +76,6 @@
     
     <%# 配送先の入力 %>
    <%= form_with model: @purchase_history_sent, url: item_purchase_histories_path, local: true do |f| %>
-   <%= render 'shared/error_messages', model: @purchase_history_sent %>
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
         配送先入力

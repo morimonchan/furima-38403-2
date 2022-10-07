@@ -70,6 +70,13 @@ RSpec.describe PurchaseHistorySent, type: :model do
         @purchase_history_sent.valid?
         expect(@purchase_history_sent.errors.full_messages).to include "Phone number is invalid. Include hyphen(-)"
        end
+
+       it "tokenが空では登録できないこと" do
+        @purchase_history_sent.token = nil
+        @purchase_history_sent.valid?
+        expect(@purchase_history_sent.errors.full_messages).to include("Token can't be blank")
+      end
+
       end
     end
 end

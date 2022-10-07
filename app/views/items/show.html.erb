@@ -8,11 +8,14 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
+     
+      <%# <% if @item.purchase_history.present? %> %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <%# <% end %> %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -25,6 +28,7 @@
 
     <%# 商品購入履歴とアソシエーションする予定 %>
   <% if user_signed_in?  %>
+  <%# && @item.purchase_history != nil %>
    <% if current_user.id == @item.user_id %>
     <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
