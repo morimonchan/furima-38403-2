@@ -135,11 +135,11 @@
           <%= image_tag item.image, class: "item-img" %>
 
 
-          <%# 商品が売れていればsold outを表示しましょう %>
+          <% if item.purchase_history.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <% end %>
 
         </div>
         <div class='item-info'>
@@ -157,7 +157,6 @@
         <% end %>
       </li>
      <% end %>
-      <%# 投稿画像がないときに画像が表示されない。 %>
      <% if @items[0] == nil %>     
       <li class='list'>
         <%= link_to '#' do %>
