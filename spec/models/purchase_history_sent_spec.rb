@@ -101,5 +101,3 @@ RSpec.describe PurchaseHistorySent, type: :model do
     end
   end
 end
-
-

@@ -2,7 +2,6 @@ class PurchaseHistoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
 
-
   def index
     @purchase_history_sent = PurchaseHistorySent.new
     redirect_to root_path if current_user == @item.user || @item.purchase_history.present?
@@ -36,5 +35,4 @@ class PurchaseHistoriesController < ApplicationController
     binding.pry
     @item = Item.find(params[:item_id])
   end
-
 end
