@@ -32,7 +32,6 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def set_item
-    binding.pry
     @item = Item.find(params[:item_id])
   end
 end
