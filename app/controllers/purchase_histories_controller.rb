@@ -1,9 +1,12 @@
 class PurchaseHistoriesController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
 
   def index
     @purchase_history_sent = PurchaseHistorySent.new
     @item = Item.find(params[:item_id])
+    if current_user == @item.user || @item.purchase_history.present?
+      redirect_to root_path
+    end
   end
   
 
@@ -25,7 +28,6 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   private
-  
 
   def purchase_history_params
     params.require(:purchase_history_sent).
