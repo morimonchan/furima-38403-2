@@ -13,6 +13,10 @@ RSpec.describe PurchaseHistorySent, type: :model do
       it '必須項目が存在すれば登録できる' do
         expect(@purchase_history_sent).to be_valid
       end
+      it '建物名が空でも購入できる' do
+        @purchase_history_sent.building = ''
+        expect(@purchase_history_sent).to be_valid
+      end
     end
 
     context '商品購入ができないとき' do
@@ -22,7 +26,7 @@ RSpec.describe PurchaseHistorySent, type: :model do
         expect(@purchase_history_sent.errors.full_messages).to include "Code can't be blank"
       end
 
-      it '郵便番号は、「7桁」の半角文字では登録できない' do
+      it '郵便番号は、ハイフンがないと登録できない' do
         @purchase_history_sent.code = '1111111'
         @purchase_history_sent.valid?
         expect(@purchase_history_sent.errors.full_messages).to include 'Code is invalid. Include hyphen(-)'
@@ -71,6 +75,24 @@ RSpec.describe PurchaseHistorySent, type: :model do
         expect(@purchase_history_sent.errors.full_messages).to include 'Phone number is invalid. Include hyphen(-)'
       end
 
+      it '電話番号はハイフンがあると登録できない' do
+        @purchase_history_sent.phone_number = '000-1111-2222'
+        @purchase_history_sent.valid?
+        expect(@purchase_history_sent.errors.full_messages).to include 'Phone number is invalid. Include hyphen(-)'
+      end
+
+      it 'userが紐づいていなければ登録ができない' do
+        @purchase_history_sent.user_id = nil
+        @purchase_history_sent.valid?
+        expect(@purchase_history_sent.errors.full_messages).to include "User can't be blank"
+      end
+
+      it 'itemが紐づいていなければ登録ができない' do
+        @purchase_history_sent.item_id = nil
+        @purchase_history_sent.valid?
+        expect(@purchase_history_sent.errors.full_messages).to include "Item can't be blank"
+      end
+
       it 'tokenが空では登録できないこと' do
         @purchase_history_sent.token = nil
         @purchase_history_sent.valid?
@@ -79,3 +101,5 @@ RSpec.describe PurchaseHistorySent, type: :model do
     end
   end
 end
+
+
