@@ -23,80 +23,74 @@ RSpec.describe PurchaseHistorySent, type: :model do
       it '郵便番号が空では登録できない' do
         @purchase_history_sent.code = ''
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "Code can't be blank"
+        expect(@purchase_history_sent.errors.full_messages).to include "郵便番号を入力してください"
       end
 
       it '郵便番号は、ハイフンがないと登録できない' do
         @purchase_history_sent.code = '1111111'
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include 'Code is invalid. Include hyphen(-)'
+        expect(@purchase_history_sent.errors.full_messages).to include '郵便番号ハイフンを含めてください'
       end
 
       it '都道府県が----では登録できない' do
         @purchase_history_sent.place_id = '1'
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "Place can't be blank"
+        expect(@purchase_history_sent.errors.full_messages).to include "都道府県を入力してください"
       end
 
       it '市区町村が空では登録できない' do
         @purchase_history_sent.city = ''
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "City can't be blank"
+        expect(@purchase_history_sent.errors.full_messages).to include "市区町村を入力してください"
       end
 
       it '番地が空では登録できない' do
         @purchase_history_sent.street_address = ''
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "Street address can't be blank"
+        expect(@purchase_history_sent.errors.full_messages).to include "番地を入力してください"
       end
 
       it '電話番号が空では登録できない' do
         @purchase_history_sent.phone_number = ''
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "Phone number can't be blank",
-                                                                       'Phone number is invalid. Include hyphen(-)'
+        expect(@purchase_history_sent.errors.full_messages).to include "電話番号を入力してください",
+                                                                       '電話番号ハイフンを含めないでください'
       end
 
       it '電話番号は9桁以下の半角数値では登録できない' do
         @purchase_history_sent.phone_number = '000111222'
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include 'Phone number is invalid. Include hyphen(-)'
+        expect(@purchase_history_sent.errors.full_messages).to include '電話番号ハイフンを含めないでください'
       end
 
       it '電話番号は12桁以上の半角数値では登録できない' do
         @purchase_history_sent.phone_number = '000111222333'
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include 'Phone number is invalid. Include hyphen(-)'
+        expect(@purchase_history_sent.errors.full_messages).to include '電話番号ハイフンを含めないでください'
       end
 
       it '電話番号はハイフンがあると登録できない' do
         @purchase_history_sent.phone_number = '000-1111-2222'
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include 'Phone number is invalid. Include hyphen(-)'
-      end
-
-      it '電話番号はハイフンがあると登録できない' do
-        @purchase_history_sent.phone_number = '000-1111-2222'
-        @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include 'Phone number is invalid. Include hyphen(-)'
+        expect(@purchase_history_sent.errors.full_messages).to include '電話番号ハイフンを含めないでください'
       end
 
       it 'userが紐づいていなければ登録ができない' do
         @purchase_history_sent.user_id = nil
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "User can't be blank"
+        expect(@purchase_history_sent.errors.full_messages).to include "Userを入力してください"
       end
 
       it 'itemが紐づいていなければ登録ができない' do
         @purchase_history_sent.item_id = nil
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include "Item can't be blank"
+        expect(@purchase_history_sent.errors.full_messages).to include "Itemを入力してください"
       end
 
       it 'tokenが空では登録できないこと' do
         @purchase_history_sent.token = nil
         @purchase_history_sent.valid?
-        expect(@purchase_history_sent.errors.full_messages).to include("Token can't be blank")
+        expect(@purchase_history_sent.errors.full_messages).to include("クレジットカード情報を入力してください")
       end
     end
   end
